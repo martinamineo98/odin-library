@@ -24,7 +24,7 @@ addBookToLibrary('The Silmarillion', 'J.R.R. Tolkien', 365, false)
 // TABLE ROW: DeleteBtn Name Author Pages ReadBtn
 
 !function showBooks() {
-	const container = document.querySelector('.books')
+	const container = document.querySelector('tbody')
 	
 	// Create each needed element by providing its text content,
 	// its parent and its type.
@@ -43,14 +43,11 @@ addBookToLibrary('The Silmarillion', 'J.R.R. Tolkien', 365, false)
 	}
 	
 	// Change the book's status in the array and in the table.
-	function changeReadStatus(bookName, btn) {
+	function changeReadStatus(bookName, btn, img) {
 		const index = getBookIndex(bookName)
 		const status = books[index].read
 		
 		books[index].changeStatus()
-		btn.textContent = status ? 'NOT READ' : 'READ'
-		
-		console.log(books[index].read)
 	}
 	
 	// Remove the book from the table and from the array.
@@ -76,25 +73,55 @@ addBookToLibrary('The Silmarillion', 'J.R.R. Tolkien', 365, false)
 			let bookPages = createElement(book.pages, bookRow)
 			let bookRead = createElement('', bookRow)
 			
-			let bookStatus = book.read ? 'Read' : 'Not Read'
-			
 			// Delete Book from table and array when clicked.
 			
-			let bookDeleteBtn = createElement('Delete', bookDelete, 'button')
+			let bookDeleteBtn = createElement('', bookDelete, 'button')
 					bookDeleteBtn.addEventListener('click', () => 
 																				 removeBook(book.name, bookRow))
+								
+			// Add a SVG Icon instead of text for both the delete button and the read one.
+			
+			let bookDeleteBtnImg = document.createElement('img')
+					bookDeleteBtnImg.setAttribute('src', './assets/img/feather/trash-2.svg')
+					bookDeleteBtnImg.setAttribute('alt', 'Delete Book')
+					
+			bookDeleteBtn.appendChild(bookDeleteBtnImg)
+			
+			let bookReadBtn = createElement('', bookRead, 'button')
+			
+			let bookReadBtnImg = document.createElement('img')
+					bookReadBtnImg.setAttribute('src', getCorrectSVGIcon(book.read))
+					bookReadBtnImg.setAttribute('alt', 'Change Book Read State')
+					
+			bookReadBtn.appendChild(bookReadBtnImg)
 					
 			// Change Book Read Status when clicked.
 			
-			let bookReadBtn = createElement(bookStatus, bookRead, 'button')
-					bookReadBtn.addEventListener('click', () => 
-																			 changeReadStatus(book.name, bookReadBtn))
-			
+					bookReadBtn.addEventListener('click', () => {
+						changeReadStatus(book.name, bookReadBtn, bookReadBtnImg)
+						changeSVGIcon(bookReadBtnImg)
+					})
+					
+			// Get the correct SVG Icon.
+						
 			container.appendChild(bookRow)
 		})
 	}
 	
 	addBooksToTable()
+	
+	function getCorrectSVGIcon(status) {
+		return status ? './assets/img/feather/eye.svg' : './assets/img/feather/eye-off.svg'
+	}
+	
+	function changeSVGIcon(img) {
+		const imgSrc = img.getAttribute('src')
+		if (imgSrc == './assets/img/feather/eye.svg') {
+			img.setAttribute('src', './assets/img/feather/eye-off.svg')
+		} else {
+			img.setAttribute('src', './assets/img/feather/eye.svg')
+		}
+	}
 	
 	// Function that updates the table each time a new book is added.
 	// It deletes each book rows and creates them anew.
@@ -162,6 +189,9 @@ addBookToLibrary('The Silmarillion', 'J.R.R. Tolkien', 365, false)
 					resetInput()
 				})
 				
-		ulContainer.appendChild(submitButton)
+		let submitButtonLi = document.createElement('li')
+				submitButtonLi.appendChild(submitButton)
+				
+		ul.appendChild(submitButtonLi)
 	}()
 }()

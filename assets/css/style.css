@@ -1,4 +1,18 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+
+/* -------------------------------------------------------- VARIABLES */
+
+:root {
+	--main-bg-color: #FFFFFF;
+	--main-font-color: #000000;
+	--main-font-family: 'Barlow Condensed', sans-serif;
+	--add-book-button-bg-color: hsl(175deg, 50%, 80%);
+	--add-book-input-bg-color: hsl(0deg, 0%, 97.5%);
+	--table-header-bg-color: hsla(0deg, 0%, 0%, 2.5%);
+	--table-book-row-border-bottom-color: hsla(0deg, 0%, 0%, 2.5%);
+}
+
 /* ------------------------------------------------------------ RESET */
 
 *,
@@ -13,6 +27,15 @@
 html,
 body {
   font-size: 10px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: 500;
 }
 
 input,
@@ -34,5 +57,120 @@ table {
 /* ------------------------------------------------------------- MAIN */
 
 body {
-	font: calc(1.6rem + .5vmin) 'Barlow Semi Condensed', sans-serif;
+	background-color: var(--main-bg-color);
+	color: var(--main-font-color);
+	font: calc(1.6rem + .5vmin) var(--main-font-family);
+}
+
+/* -------------------------------------------------------- CONTAINER */
+
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 60px;
+	margin: 0 auto;
+	max-width: 80vw;
+	min-height: 100vh;
+	place-content: center;
+	place-items: center;
+}
+
+/* ----------------------------------------------------------- HEADER */
+
+.header {
+	display: flex;
+	flex-direction: row;
+	gap: 15px;
+	place-content: center;
+	place-items: center;
+}
+
+.header img {
+	width: 36px;
+}
+
+/* -------------------------------------------------- ADD BOOK "FORM" */
+
+.add-book ul {
+	display: grid;
+	gap: 15px;
+	grid-template-columns: repeat(2, 1fr);
+	list-style: none;
+}
+
+.add-book li {
+	column-gap: 10px;
+	display: flex;
+	flex-direction: row;
+	place-items: center;
+}
+
+.add-book li:last-child {
+	grid-column: 1 / -1;
+}
+
+.add-book input {
+	background-color: var(--add-book-input-bg-color);
+	padding: .5ch 1ch;
+}
+
+.add-book button {
+	background-color: var(--add-book-button-bg-color);
+	border-radius: 5px;
+	font-weight: 500;
+	letter-spacing: .25ch;
+	padding: 1ch 2ch;
+	text-transform: uppercase;
+	transition: transform .25s ease-in-out;
+	width: 100%;
+}
+
+.add-book button:hover,
+.add-book button:focus {
+	cursor: pointer;
+	transform: scale(1.05);
+}
+
+/* ------------------------------------------------------------ BOOKS */
+
+.books {
+	text-align: center;
+	width: 100%;
+}
+
+.books :is(td, th) {
+	margin: 10px;
+	padding: 10px;
+}
+
+.books th {
+	border: 10px solid #FFFFFF;
+	font-weight: 500;
+	letter-spacing: .25ch;
+	text-transform: uppercase;
+}
+
+.books .isHeaderRow th {
+	background-color: var(--table-header-bg-color);
+}
+
+.books .isBookRow:not(:last-child) td {
+	border: 10px solid #FFFFFF;
+	border-bottom: 1px solid var(--table-book-row-border-bottom-color);
+}
+
+.books .isBookRow td:first-of-type,
+.books .isBookRow td:last-of-type {
+	display: flex;
+	place-content: center;
+	place-items: center;
+}
+
+.books .isBookRow button {
+	background-color: transparent;
+}
+
+.books .isBookRow button:hover,
+.books .isBookRow button:focus {
+	cursor: pointer;
 }

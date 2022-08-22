@@ -7,18 +7,25 @@
 		<link rel="stylesheet" href="./assets/css/style.css">
 	</head>
 	<body class="container">
+		<header class="header">
+			<img alt="SVG Book Icon" src="./assets/img/feather/book-open.svg">
+			<h1>Library</h1>
+		</header>
+		
 		<div class="add-book">
 			<ul></ul>
 		</div>
 		
 		<table class="books">
-			<tr>
-				<td></td>
-				<th scope="col">Name</th>
-				<th scope="col">Author</th>
-				<th scope="col">Pages</th>
-				<th scope="col">Read</th>
-			</tr>
+			<tbody>
+				<tr class="isHeaderRow">
+					<td></td>
+					<th scope="col">Name</th>
+					<th scope="col">Author</th>
+					<th scope="col">Pages</th>
+					<th scope="col">Read</th>
+				</tr>
+			</tbody>
 		</table>
 		
 		<script src="./assets/js/app.js"></script>
