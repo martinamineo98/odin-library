@@ -119,6 +119,7 @@ body {
 	border-radius: 5px;
 	font-weight: 500;
 	letter-spacing: .25ch;
+	margin-top: 15px;
 	padding: 1ch 2ch;
 	text-transform: uppercase;
 	transition: transform .25s ease-in-out;
