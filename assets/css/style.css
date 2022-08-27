@@ -91,21 +91,21 @@ body {
 
 /* -------------------------------------------------- ADD BOOK "FORM" */
 
-.add-book ul {
+.add-book .form {
 	display: grid;
 	gap: 15px;
 	grid-template-columns: repeat(2, 1fr);
 	list-style: none;
 }
 
-.add-book li {
+.add-book .form div {
 	column-gap: 10px;
 	display: flex;
 	flex-direction: row;
 	place-items: center;
 }
 
-.add-book li:last-child {
+.add-book .form div:last-child {
 	grid-column: 1 / -1;
 }
 
